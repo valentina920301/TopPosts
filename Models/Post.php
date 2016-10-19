@@ -13,14 +13,19 @@ class Post
 
     private $sContent;
 
+    private $sDateCreated;
+
     private $sDateUpdated;
 
-    public function __construct($sAuthor, $sTitle, $sContent, $sDateUpdated, $iId = null)
+    public function __construct($sAuthor, $sTitle, $sContent, $sDateUpdated, $sDateCreated = "", $iId = null)
     {
         $this->setAuthor($sAuthor);
         $this->setTitle($sTitle);
         $this->setContent($sContent);
         $this->setDateUpdated($sDateUpdated);
+        if($sDateCreated != '') {
+            $this->setDateCreated($sDateCreated);
+        }
         $this->setId($iId);
     }
 
@@ -86,6 +91,22 @@ class Post
     public function setContent($sContent)
     {
         $this->sContent = $sContent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateCreated()
+    {
+        return $this->sDateCreated;
+    }
+
+    /**
+     * @param mixed $sDateCreated
+     */
+    public function setDateCreated($sDateCreated)
+    {
+        $this->sDateCreated = $sDateCreated;
     }
 
     /**

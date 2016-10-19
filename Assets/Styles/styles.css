@@ -1,0 +1,144 @@
+#editFormHolder {
+    position: fixed;
+    right: 0px;
+    width: 49%;
+}
+
+#editFormHolder .label {
+    background-color: darkturquoise;
+    color: yellow;
+    width: 84%;
+    padding: 2%;
+    font-size: x-large;
+}
+
+.editForm textarea {
+    resize: none;
+    height: 100px;
+}
+
+.editForm input[type="submit"], .editForm input[type="button"] {
+    width: 49%;
+}
+
+.editForm input, .editForm textarea {
+    width: 95%;
+    padding: 2%;
+    margin-bottom: 3%;
+    background-color: yellow;
+    border: 1px dashed turquoise;
+}
+
+form {
+    width: 84%;
+    padding: 2%;
+    background-color: darkturquoise;
+    margin-bottom: 5%;
+}
+
+#contentHolder {
+    width: 50%;
+    margin-left: 2%;
+}
+
+#longestPost {
+    margin-bottom: 5%;
+    color: azure;
+    width: 81%;
+    padding: 3%;
+    background-color: deepskyblue;
+}
+
+.postContentHolder {
+    width: 80%;
+    border: 1px solid turquoise;
+    padding: 0 4% 5% 4%;
+    background-color: yellow;
+}
+
+.postContentHolder h3 {
+    color: #555;
+}
+
+.postContentHolder .body {
+    color: #444;
+    margin-bottom: 5%;
+    word-break: break-all;
+}
+
+.postContentHolder .actionsHolder {
+    margin-top: 2%;
+    float: right;
+    width: 30%;
+}
+
+.actionsHolder input {
+    margin: 5% 0;
+    width: 45%;
+    background-color: #999;
+    color: yellow;
+    border: none;
+}
+
+#contentHolder div:first-of-type .postContentHolder {
+    background-color: pink;
+}
+
+#contentHolder div:first-of-type .postContentHolder input {
+    color: pink;
+
+}
+
+.postHolder {
+    width: 99%;
+    margin-bottom: 5%;
+}
+
+.postHolder .imageHolder {
+    position: relative;
+    width: 20%;
+    margin-top: -10%;
+    margin-left: 78%;
+    border: 1px dashed turquoise;
+}
+
+.postHolder img {
+    width: 100%;
+}
+
+#responseBlock {
+    width: 95%;
+}
+
+.responseMessage {
+    padding: 2%;
+    margin-bottom: 5%;
+    width: 83%;
+}
+
+#contentHolder form .responseMessage {
+    width: 95%;
+}
+
+.responseMessage i {
+    float: right;
+    font-family: fantasy;
+    color: antiquewhite;
+    cursor: pointer;
+}
+
+.responseMessage.success {
+    color: limegreen;
+    background-color: forestgreen;
+}
+
+.responseMessage.error {
+    color: crimson;
+    background-color: pink;
+}
+
+.responseMessage.error i {
+    color: crimson;
+}
+
+/* TODO: mobile versions */

@@ -21,3 +21,34 @@
     $oDBConfigClass::DBNAME,
     $oDBConfigClass::HOST
  );
+
+ $sScriptName = explode('/', $_SERVER['SCRIPT_NAME']);
+ $sRequestUri = explode('/', $_SERVER['REQUEST_URI']);
+ $aCustomUri = array();
+ $iControllerIndex = 0;
+
+ foreach ($sScriptName as $iKey => $sValue){
+     if ($sValue == 'index.php') {
+         $iControllerIndex = $iKey;
+         break;
+     }
+ }
+ $iActionIndex = $iControllerIndex + 1;
+ $sControllerName = $sRequestUri[$iControllerIndex];
+ $sActionName = $sRequestUri[$iActionIndex];
+
+ $sControllerClassName = '\\TopPosts\\Controllers\\'.ucfirst($sControllerName).'Controller';
+
+ $sTemplate = new \TopPosts\Template($sControllerName, $sActionName);
+
+ try{
+     $oController = new $sControllerClassName($sTemplate);
+ } catch (\Exception $e) {
+     echo "No such controller";
+ }
+
+ if (!method_exists($oController, $sActionName)) {
+     die("No such action");
+ }
+ $oController->$sActionName();
+ $sTemplate->render();

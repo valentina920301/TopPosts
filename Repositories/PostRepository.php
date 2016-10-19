@@ -37,7 +37,7 @@ class PostRepository
      */
     public function getAllPosts()
     {
-        $sQuery = "SELECT * from posts ORDER BY date_updated DESC";
+        $sQuery = "SELECT * from posts ORDER BY date_created DESC";
         $this->oDB->query($sQuery, []);
 
         $aResult = $this->oDB->fetchAll();
@@ -49,6 +49,7 @@ class PostRepository
                 $aPost['title'],
                 $aPost['content'],
                 $aPost['date_updated'],
+                $aPost['date_created'],
                 $aPost['id']
             );
         }
@@ -75,6 +76,7 @@ class PostRepository
             $aResult['title'],
             $aResult['content'],
             $aResult['date_updated'],
+            $aResult['date_created'],
             $aResult['id']
         );
     }
@@ -97,6 +99,7 @@ class PostRepository
             $aResult['title'],
             $aResult['content'],
             $aResult['date_updated'],
+            $aResult['date_created'],
             $aResult['id']
         );
     }
@@ -108,14 +111,15 @@ class PostRepository
     public function insertPost(Post $oPost)
     {
         $sQuery = "
-            INSERT INTO posts (author, title, content, date_updated)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO posts (author, title, content, date_updated, date_created)
+            VALUES (?, ?, ?, ?, ?)
         ";
         $aParams = [
             $oPost->getAuthor(),
             $oPost->getTitle(),
             $oPost->getContent(),
-            $oPost->getDateUpdated()
+            $oPost->getDateUpdated(),
+            $oPost->getDateCreated()
         ];
 
         $this->oDB->query($sQuery, $aParams);
