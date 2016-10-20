@@ -86,6 +86,16 @@ function stringToEl(sString) {
     }
 }
 
+function isMobile(){
+    var sTrigger = document.getElementById("editFormTrigger");
+    var sTriggerVisibility = window.getComputedStyle(sTrigger).display;
+    return sTriggerVisibility == "block";
+}
+
+/****************************************/
+/* ============= Actions ============== */
+/****************************************/
+
 function savePost(oEvent, iPostId) {
 
     oEvent.preventDefault();
@@ -118,6 +128,10 @@ function openEditForm(oEvent, iPostId){
 
 }
 
+function openEditFormMobile(form) {
+    form.setAttribute('style', 'display:block');
+}
+
 function deletePost(oEvent, iPostId) {
     oEvent.preventDefault();
 
@@ -142,10 +156,21 @@ function clearFormFields(oForm) {
 }
 
 function closeForm(iId) {
-    var oForm = document.getElementById('editForm'+iId);
-    oForm.remove();
-    var oPost = document.getElementsByClassName('post'+iId).item(0);
-    oPost.setAttribute('style', 'display:block');
+    if(iId > 0) {
+        document.getElementById('editForm'+iId).remove();
+    }
+
+    if (isMobile()) {
+        var editForm = document.getElementById('editForm').nextSibling;
+        if(editForm != null && editForm!= undefined) {
+            editForm.remove();
+        }
+        document.getElementById('editFormHolder').setAttribute('style', 'display:none');
+        document.getElementById('editForm').setAttribute('style', 'display:block')
+    } else {
+        var oPost = document.getElementsByClassName('post'+iId).item(0);
+        oPost.setAttribute('style', 'display:block');
+    }
 }
 
 /****************************************/
@@ -155,6 +180,7 @@ function closeForm(iId) {
 
 function showPostInList(sResponse){
 
+    var contentHolder = document.getElementById("contentHolder");
     var oLongestPost = document.getElementById("longestPost");
     var oNodes = stringToEl(sResponse);
     var oNewLongestPostAuthor = oNodes[0];
@@ -165,16 +191,27 @@ function showPostInList(sResponse){
 
     if (oLongestPost) {
         if(oForm != undefined && oForm != null){
-            document.getElementById("contentHolder").replaceChild(oNewPost, oForm);
+            if (isMobile()) {
+                var oOldPost = document.getElementById('post'+iId);
+                contentHolder.replaceChild(oNewPost, oOldPost);
+                oForm.remove();
+                document.getElementById('editForm').setAttribute('style', 'display:block');
+            } else {
+                contentHolder.replaceChild(oNewPost, oForm);
+            }
         } else {
-            document.getElementById("contentHolder").insertBefore(oNewPost, oLongestPost.nextSibling);
+            contentHolder.insertBefore(oNewPost, oLongestPost.nextSibling);
             oForm = document.getElementById('editForm');
             clearFormFields(oForm);
         }
-        document.getElementById("contentHolder").replaceChild(oNewLongestPostAuthor, oLongestPost);
+        contentHolder.replaceChild(oNewLongestPostAuthor, oLongestPost);
     } else {
-        document.getElementById("contentHolder").appendChild(oNewLongestPostAuthor);
-        document.getElementById("contentHolder").appendChild(oNewPost);
+        contentHolder.appendChild(oNewLongestPostAuthor);
+        contentHolder.appendChild(oNewPost);
+    }
+
+    if (isMobile()) {
+        document.getElementById('editFormHolder').setAttribute('style', 'display:none');
     }
 
 }
@@ -184,9 +221,17 @@ function openEditFormCallback(sResponse){
     var oForm = stringToEl(sResponse);
     var oInput = oForm.getElementsByClassName("postId");
     var iId = oInput.id.value;
-    var oPost = document.getElementsByClassName('post'+iId).item(0);
-    oPost.setAttribute('style', 'display:none');
-    document.getElementById("contentHolder").insertBefore(oForm, oPost);
+
+    if( isMobile() ){
+        document.getElementById("editFormHolder").appendChild(oForm);
+        document.getElementById("editForm").setAttribute('style', 'display:none');
+        document.getElementById("editForm"+iId).setAttribute('style', 'display:block');
+        document.getElementById("editFormHolder").setAttribute('style', 'display:block');
+    } else{
+        var oPost = document.getElementsByClassName('post'+iId).item(0);
+        oPost.setAttribute('style', 'display:none');
+        document.getElementById("contentHolder").insertBefore(oForm, oPost);
+    }
 
 }
 
