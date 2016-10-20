@@ -156,10 +156,6 @@ function closeForm(iId) {
 function showPostInList(sResponse){
 
     var oLongestPost = document.getElementById("longestPost");
-    //var oFirstPost = document.getElementById("firstPost");
-    //if (oFirstPost != null && firstPost != undefined) {
-    //    oFirstPost.removeAttribute('id');
-    //}
     var oNodes = stringToEl(sResponse);
     var oNewLongestPostAuthor = oNodes[0];
     var oNewPost = oNodes[1];
@@ -221,9 +217,6 @@ function deletePostCallback(sResponse) {
 
     var iId = oDeleteMessage.getAttribute('data-id');
     var oPost = document.getElementsByClassName('post'+iId).item(0);
-    //if (oPost.getAttribute('id') == "firstPost") {
-    //    oPost.nextElementSibling.setAttribute('id', 'firstPost');
-    //}
 
     document.getElementById("contentHolder").replaceChild(oDeleteMessage, oPost);
 }

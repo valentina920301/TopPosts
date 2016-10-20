@@ -1,4 +1,4 @@
-SetEnv CONFIG_NAME RGDB
+SetEnv CONFIG_NAME TopPostsDB
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -s [OR]
