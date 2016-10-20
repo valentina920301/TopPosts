@@ -1,0 +1,8 @@
+{
+    "require": {
+        "codeception/codeception": "*"
+    },
+    "require-dev": {
+        "codeception/base": "*"
+    }
+}
