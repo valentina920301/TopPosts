@@ -1,7 +1,8 @@
 <?php if (isset($this->aParams['sLongestPostAuthor']) && $this->aParams['sLongestPostAuthor'] != '') : ?>
     <?= $this->load('longestPost', $this->aParams);?>
 <?php endif; ?>
-<div class="postHolder post<?= $this->aParams['oPost']->getId(); ?>" data-id="<?= $this->aParams['oPost']->getId(); ?>">
+<div class="postHolder post<?= $this->aParams['oPost']->getId(); ?>" data-id="<?= $this->aParams['oPost']->getId(); ?>"
+        id="post<?= $this->aParams['oPost']->getId(); ?>" data-id="<?= $this->aParams['oPost']->getId(); ?>">
     <div class="postContentHolder">
         <div class="actionsHolder">
             <input type="button" name="edit" value="Edit" onclick="return openEditForm(event, <?= $this->aParams['oPost']->getId(); ?>)" />

@@ -1,3 +1,7 @@
+#editFormTrigger {
+    display: none;
+}
+
 #editFormHolder {
     position: fixed;
     right: 0px;
@@ -10,6 +14,10 @@
     width: 84%;
     padding: 2%;
     font-size: x-large;
+}
+
+#editFormHolder .label span {
+    display: none;
 }
 
 .editForm textarea {
@@ -67,17 +75,17 @@ form {
 }
 
 .postContentHolder .actionsHolder {
-    margin-top: 2%;
     float: right;
-    width: 30%;
+    width: 45%;
+    text-align: right;
 }
 
 .actionsHolder input {
     margin: 5% 0;
-    width: 45%;
     background-color: #999;
     color: yellow;
     border: none;
+    width: 45%;
 }
 
 #contentHolder div:first-of-type .postContentHolder {
@@ -142,3 +150,71 @@ form {
 }
 
 /* TODO: mobile versions */
+
+@media only screen and (max-width: 768px) {
+    /* For tablets: */
+
+}
+
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    #editFormTrigger {
+        display: block;
+        position: fixed;
+        padding: 2% 3%;
+        background-color: turquoise;
+        right: 0;
+    }
+    #editFormTrigger span {
+        color: white;
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+    #editFormHolder {
+        display: none;
+        background: rgba(0, 0, 0, 0.85);
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+
+    #editFormHolder .label, #editFormHolder form {
+        margin: 20px auto;
+    }
+
+    #editFormHolder .label span {
+        display: block;
+        float: right;
+        font-family: fantasy;
+    }
+
+    #contentHolder {
+        width: 95%;
+    }
+
+    #longestPost {
+        margin: 6%;
+        width: 82%;
+    }
+
+    .postHolder {
+        width: 94%;
+        margin: 1% 3%;
+    }
+
+    .postHolder .imageHolder {
+        z-index: 1;
+    }
+
+    .postContentHolder {
+        width: 85%;
+        margin: 0 auto;
+        z-index: 0;
+    }
+
+    .responseMessage {
+        margin: 0 auto;
+    }
+}
