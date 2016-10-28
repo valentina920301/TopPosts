@@ -48,13 +48,15 @@ function buildUrlBase() {
 }
 
 function buildParametersString(oForm) {
-    var oData = new FormData(oForm);
     var sParams = "";
-    oData.forEach(function(sValue, sKey){
+
+    for (i = 0; i < oForm.elements.length; i++) {
+        var sValue = oForm.elements[i].value;
+        var sKey = oForm.elements[i].name;
         if(sValue != "" && sValue != null){
             sParams += sKey+"="+sValue+"&"
         }
-    });
+    };
     sParams = sParams.substring(0, sParams.length - 1);
     return sParams;
 }
@@ -252,16 +254,29 @@ function deletePostCallback(sResponse) {
 
 
     var oLongestPost = document.getElementById("longestPost");
-    console.log(oLongestPost);
 
     var oNodes = stringToEl(sResponse);
-    var oNewLongestPostAuthor = oNodes[0];
-    var oDeleteMessage = oNodes[1];
+    var oNewLongestPostAuthor = null;
+    var oDeleteMessage = null;
 
-    document.getElementById("contentHolder").replaceChild(oNewLongestPostAuthor, oLongestPost);
+    if (oNodes.length > 1) {
+        oNewLongestPostAuthor = oNodes[0];
+        oDeleteMessage = oNodes[1];
+    } else {
+        oDeleteMessage = oNodes;
+    }
+
+    if (oLongestPost) {
+        if(oNewLongestPostAuthor != null) {
+            document.getElementById("contentHolder").replaceChild(oNewLongestPostAuthor, oLongestPost);
+        }else{
+            oLongestPost.remove();
+        }
+    }
 
     var iId = oDeleteMessage.getAttribute('data-id');
     var oPost = document.getElementsByClassName('post'+iId).item(0);
 
     document.getElementById("contentHolder").replaceChild(oDeleteMessage, oPost);
+
 }

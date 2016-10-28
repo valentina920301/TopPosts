@@ -2,11 +2,12 @@
     <?= $this->load('longestPost', $this->aParams);?>
 <?php endif; ?>
 <div class="postHolder post<?= $this->aParams['oPost']->getId(); ?>" data-id="<?= $this->aParams['oPost']->getId(); ?>"
-        id="post<?= $this->aParams['oPost']->getId(); ?>" data-id="<?= $this->aParams['oPost']->getId(); ?>">
+        id="post<?= $this->aParams['oPost']->getId(); ?>" data-id="<?= $this->aParams['oPost']->getId(); ?>"
+        data-date_created="<?= $this->aParams['oPost']->getDateCreated(); ?>">
     <div class="postContentHolder">
         <div class="actionsHolder">
-            <input type="button" name="edit" value="Edit" onclick="return openEditForm(event, <?= $this->aParams['oPost']->getId(); ?>)" />
-            <input type="button" name="delete" value="Delete" onclick="return deletePost(event, <?= $this->aParams['oPost']->getId(); ?>)" />
+            <a href="#" class="edit" onclick="return openEditForm(event, <?= $this->aParams['oPost']->getId(); ?>)">Edit</a>
+            <a href="#" class="delete" onclick="return deletePost(event, <?= $this->aParams['oPost']->getId(); ?>)">Delete</a>
         </div>
         <h3 class="title"><?= $this->aParams['oPost']->getTitle(); ?></h3>
         <div class="body"><?= $this->aParams['oPost']->getContent(); ?></div>

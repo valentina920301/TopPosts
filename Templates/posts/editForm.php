@@ -31,5 +31,5 @@
     <?php else : ?>
         <input type="button" name="clear" value="Clear" onclick="clearFormFields(this.parentNode)"/>
     <?php endif; ?>
-    <input type="submit" name="submit" />
+    <input type="submit" name="submit" value="Submit" />
 </form>

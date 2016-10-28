@@ -80,19 +80,23 @@ form {
     text-align: right;
 }
 
-.actionsHolder input {
-    margin: 5% 0;
+.actionsHolder a {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    margin: 5% 1%;
+    padding: 1% 2%;
     background-color: #999;
     color: yellow;
     border: none;
-    width: 45%;
+    width: 20%;
 }
 
 #contentHolder div:first-of-type .postContentHolder {
     background-color: pink;
 }
 
-#contentHolder div:first-of-type .postContentHolder input {
+#contentHolder div:first-of-type .postContentHolder a {
     color: pink;
 
 }
